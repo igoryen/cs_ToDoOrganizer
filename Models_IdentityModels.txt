@@ -1,0 +1,50 @@
+//================================================================
+// IdentityModels.cs:
+// has definitions of the essential Identity system components.
+// Between these two classes (ApplicationUser & ApplicationDbContext), 
+// the MVC framework has provided the basics for generating and consuming the complete Identity Account database. 
+// However, the basic classes are extensible, so we can tailor things to suit our needs.
+//================================================================
+
+//================================================================
+// to bring in the definition for IdentityUser
+//================================================================
+using Microsoft.AspNet.Identity.EntityFramework; // 10
+
+namespace ToDo.Models {
+  //================================================================
+  // You can add profile data for the user by adding more properties 
+  // to your ApplicationUser class, please visit 
+  // http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+  //================================================================
+
+  //================================================================
+  // Class ApplicationUser, inherits from a framework class IdentityUser. 
+  // This is the basic identity unit for managing individual accounts 
+  // in the ASP.NET MVC 5 Account system. 
+  // It's empty as defined in the default project code, 
+  // and so brings with it only those properties exposed by
+  // the base class IdentityUser. However, we can extend the 
+  // ApplicationUser class by adding our own properties, which 
+  // will then be reflected in the generated database. 
+  //================================================================
+  public class ApplicationUser : IdentityUser {
+  }
+  //================================================================
+  // Class ApplicationDbContext. 
+  // This is the Entity Framework context used to manage interaction 
+  // between our application and the database where our Account data 
+  // is persisted (which may, or may not be the same database that 
+  // will be used by the rest of our application). Important to 
+  // note that this class inherits not from DBContext (as is the 
+  // usual case with EF), but instead from IdentityDbContext. In 
+  // other words, ApplicationDbContext inherits from a pre-defined 
+  // DB context defined as part of Microsoft.AspNet.Identity.EntityFramework 
+  // which contains the "Code-First" base classes for the Identity system.
+  //================================================================
+  public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
+    public ApplicationDbContext()
+      : base("DefaultConnection") {
+    }
+  }
+}

@@ -1,0 +1,33 @@
+//================================================================
+// 30. has the definition for IdentityDbContext, DbModeBuilder, DbSet<>
+//================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using ToDo.Models.AppModels;
+using System.Data.Entity; // 30
+
+
+namespace ToDo.Models {
+  //================================================================
+  // MyUser is defined in Models.AppModels
+  //================================================================
+  public class MyDbContext : IdentityDbContext<MyUser> { // ???
+    public MyDbContext() : base("DefaultConnection") {}
+
+    //================================================================
+    // OnModelCreating()
+    //================================================================
+    protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+       public System.Data.Entity.DbSet<_ToDo>ToDoes { get; set; }
+    } // OnModelCreating()
+
+
+    //================================================================
+    // ToDoes -- the definition for DbSet<> is in System.Data.Entity
+    //================================================================
+    //public DbSet<ToDo> ToDoes { get; set; }
+    
+  } // MyDbContext()
+}
